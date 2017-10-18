@@ -1591,7 +1591,7 @@ sub queue_stats : Public {
     return pf::pfqueue::stats->new->stats_data;
 }
 
-=head update_role_configuration
+=head2 update_role_configuration
 
 Update the parameters of a role
 
