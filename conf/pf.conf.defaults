@@ -605,7 +605,6 @@ routes=enabled
 #
 # location of the routes binary. only necessary to change if you are not running the rpmed version.
 routes_binary=/sbin/ip
-
 # services.pfdns
 #
 # Should pfdns be managed by PacketFence?
@@ -615,6 +614,11 @@ pfdns=enabled
 #
 # Location of the pfdns binary.
 pfdns_binary=/usr/local/pf/bin/pfdns
+#
+# services.api-frontend
+#
+# Should routes be managed by PacketFence?
+api-frontend=enabled
 
 [snmp_traps]
 #
