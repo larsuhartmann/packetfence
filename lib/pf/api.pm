@@ -1627,7 +1627,7 @@ sub update_role_configuration : Public :AllowedAsAction(role, $role) {
     $role_cs->update_or_create($role, $hash_ref);
 
     $role_cs->commit();
-    return "Success";
+    return $pf::config::TRUE;
 }
 
 
