@@ -55,7 +55,13 @@ Readonly my $FW_FILTER_FORWARD_INT_INLINE => 'forward-internal-inline-if';
 Readonly my $FW_PREROUTING_INT_INLINE => 'prerouting-int-inline-if';
 Readonly my $FW_POSTROUTING_INT_INLINE => 'postrouting-int-inline-if';
 
-my $ipset_client = pf::api::unifiedapiclient->new();
+my $apiclient;
+sub CLONE {
+    $apiclient = pf::api::unifiedapiclient->new;
+}
+POSIX::AtFork->add_to_child(\&CLONE);
+CLONE();
+
 
 =head1 SUBROUTINES
 
@@ -303,7 +309,7 @@ sub call_ipsetd {
     my ($path, $data) = @_;
     my $response;
     eval {
-        $response = $ipset_client->call("POST", "/api/v1/$path", $data);
+        $response = $apiclient->call("POST", "/api/v1/$path", $data);
     };
     if ($@) {
         get_logger()->error("Error updating ipset $path : $@");;
